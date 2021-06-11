@@ -10,16 +10,22 @@ class Weather{
     async getWeather()
     {
         try{
-            const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.city},${this.countryKey}&appid=${this.apiKey}`;
+            const url = `http://api.openweathermap.org/data/2.5/weather?q=${this.city},
+                         ${this.countryKey}&appid=${this.apiKey}&units=metric`;    //le paso el parametro metric para que me lo convierta a medidas para utilizar
             const response = await fetch(url);
             const data = await response.json(); 
             return data;
-        } catch(error){
-            error.getMessage();
+        } catch(e){
+            console.error(e);
         }
 
-
     }
+    changeLocation(city,countryCode)
+    {
+       this.city = city;
+       this.countryCode = countryCode; 
+    }
+
 
 }
 
